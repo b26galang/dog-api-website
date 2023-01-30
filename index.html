@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dog Picture Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="content">
+        <h1>Dog Photo Generator</h1>
+        <hr>
+        <br>
+        <button onclick="randomDog()">Random</button>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+        <input id="breed" type="text" placeholder="breed" oninput="setDogBreed(event)">
+        <button onclick="searchDog()">Search</button>
+        <div id="dogImages"></div>
+    </div>
+</body>
+<script>
+    let dog = {};
+
+    let dogBreed = "";
+    function setDogBreed() {
+        dogBreed = event.target.value;
+    }
+    // Generates a single random photo of a random dog
+    async function randomDog() {
+        const httpResponse = await fetch("https://dog.ceo/api/breeds/image/random");
+
+        const body = await httpResponse.json();
+        dog = body;
+
+        // clears text input field
+        const userInput = document.getElementById("breed")
+        userInput.value = "";
+
+        renderDog();
+    }
+
+    // Will search for a random photo of the breed requested
+    async function searchDog() {
+        const httpResponse = await fetch("https://dog.ceo/api/breed/" + dogBreed.toLowerCase() + "/images/random");
+
+        const body = await httpResponse.json();
+        dog = body;
+        renderDog();
+    }
+
+    function renderDog() {
+        const dogLink = dog.message;
+
+        const dogImagesDiv = document.getElementById("dogImages");
+
+        // retrieves and creates a single dog photo
+        const dogImg = document.createElement("img");
+        dogImg.src = dogLink;
+
+        // clear out html in the div
+        dogImagesDiv.innerHTML = "";
+
+        // Adds dog photo to div
+        dogImagesDiv.appendChild(dogImg);
+    }
+
+</script>
+
+</html>

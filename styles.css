@@ -1,0 +1,67 @@
+body {
+    background-image: url("https://img.freepik.com/premium-vector/dog-paw-print-seamless-pattern_74669-381.jpg?w=826");
+    font-family: 'Quicksand', sans-serif;
+}
+
+#content {
+    background: #a0caca;
+    width: 50%;
+    height: 900px;
+    margin: auto;
+    text-align: center;
+    padding: 40px;
+    border-radius: 5%;
+}
+
+button:first-of-type {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    border-radius: 30px;
+    border: solid 2px white;
+    height: 40px;
+    width: 150px;
+    background-color: #dda1ad;
+    color: #080e0d;
+}
+
+button {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    border-radius: 30px;
+    border: solid 2px white;
+    height: 40px;
+    width: 150px;
+    background-color: #f4d084;
+    color: #080e0d;
+}
+
+input {
+    font-family: 'Quicksand', sans-serif;
+    height: 30px;
+    width: 200px;
+    font-size: 20px;
+}
+
+button:hover {
+   font-weight: bold;
+}
+
+hr {
+    border: 1px solid #080e0d;
+}
+
+h1 {
+    color: #080e0d;
+}
+
+/* prevent photos form leaking outside div*/
+div img {
+    max-height: 500px;
+    max-width: 500px;
+    margin: 20px;
+    border: solid white 2px;
+}
+
+ul {
+    list-style: none;
+}
