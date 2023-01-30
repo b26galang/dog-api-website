@@ -28,6 +28,7 @@
     function setDogBreed() {
         dogBreed = event.target.value;
     }
+
     // Generates a single random photo of a random dog
     async function randomDog() {
         const httpResponse = await fetch("https://dog.ceo/api/breeds/image/random");
@@ -36,7 +37,7 @@
         dog = body;
 
         // clears text input field
-        const userInput = document.getElementById("breed")
+        const userInput = document.getElementById("breed");
         userInput.value = "";
 
         renderDog();
@@ -44,11 +45,22 @@
 
     // Will search for a random photo of the breed requested
     async function searchDog() {
+
         const httpResponse = await fetch("https://dog.ceo/api/breed/" + dogBreed.toLowerCase() + "/images/random");
 
         const body = await httpResponse.json();
         dog = body;
-        renderDog();
+
+        // checks if user input contains only letters
+        const onlyLetters = /^[A-Za-z]+$/;
+        if (dogBreed.match(onlyLetters)){
+            renderDog();
+        } else {
+            const userInput = document.getElementById("breed");
+            userInput.value = "";
+            alert("Please type using only letters.");
+            return;
+        }
     }
 
     function renderDog() {
